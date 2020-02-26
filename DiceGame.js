@@ -1,5 +1,5 @@
-var p1 = 1, p2 = 1, p3 = 1,p4 = 1,p5 = 1,p6 = 1;
-var p1Score = 0, p2Score = 0, p3Score = 0, p4Score = 0, p5Score = 0, p6Score = 0;
+var p1 = 1, p2 = 1, p3 = 1,p4 = 1,p5 = 1,p6 = 1,p7 = 1,p8 = 1,p8 = 1,p10 = 1;
+var p1Score = 0, p2Score = 0, p3Score = 0, p4Score = 0, p5Score = 0, p6Score = 0, p7Score = 0, p8Score = 0, p9Score = 0, p10Score = 0;
 
 function StartGame(){
     ShowPlayers()
@@ -52,6 +52,18 @@ function ShowPlayers(){
     if(p6 !== 0){
         document.getElementById("p6").innerHTML = "P6";
     }
+    if(p7 !== 0){
+        document.getElementById("p7").innerHTML = "P7";
+    }
+    if(p8 !== 0){
+        document.getElementById("p8").innerHTML = "P8";
+    }
+    if(p9 !== 0){
+        document.getElementById("p9").innerHTML = "P9";
+    }
+    if(p10 !== 0){
+        document.getElementById("p10").innerHTML = "P10";
+    }
 }
 
 function ShowPlayerScore(){
@@ -72,4 +84,21 @@ function ShowPlayerScore(){
     if(p6 !== 0){
         document.getElementById("p6Score").innerHTML = p6Score;
     }
+    if(p7 !== 0){
+        document.getElementById("p7Score").innerHTML = p7Score;
+    }
+    if(p8 !== 0){
+        document.getElementById("p8Score").innerHTML = p8Score;
+    }
+    if(p9 !== 0){
+        document.getElementById("p9Score").innerHTML = p9Score;
+    }
+    if(p10 !== 0){
+        document.getElementById("p10Score").innerHTML = p10Score;
+    }
+}
+
+function Round(){
+    p1Score = diceTotal;
+    p1Score.innerHTML = p1Score;
 }
