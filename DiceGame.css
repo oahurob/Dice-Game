@@ -1,0 +1,31 @@
+body{
+    margin: 25px;
+    background-color: black;
+    background-image: url("dice.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fill;
+    background-size: cover;
+}
+
+div.dice{
+    width: 32px;
+    background: rgb(25, 110, 207);
+    border: rgb(224, 204, 20) 10 px solid;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 100px;
+
+}
+button.press{
+    border-radius: 25px;
+}
+h2{
+    color: wheat;
+}
+
+table.t{
+    padding: 15px;
+    border-spacing: 35px;
+}

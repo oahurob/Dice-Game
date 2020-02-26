@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Dice Game</title>
+        <link rel="stylesheet" type="text/css" href="DiceGame.css">
+    </head>
+        <body>
+            <table class="t" align="center">
+                <th>
+                    <h2 id="p1"></h2>
+                </th>
+                <th>
+                    <h2 id="p2"></h2>
+                </th>
+                <th>
+                    <h2 id="p3"></h2>
+                </th>
+                <th>
+                    <h2 id="p4"></h2>
+                </th>
+                <th>
+                    <h2 id="p5"></h2>
+                </th>
+                <th>
+                    <h2 id="p6"></h2>
+                </th>
+                <tr/>
+                <td>
+                    <h2 id="p1Score"></h2>
+                </td>
+                <td>
+                    <h2 id="p2Score"></h2>
+                </td>
+                <td>
+                    <h2 id="p3Score"></h2>
+                </td>
+                <td>
+                    <h2 id="p4Score"></h2>
+                </td>
+                <td>
+                    <h2 id="p5Score"></h2>
+                </td>
+                <td>
+                    <h2 id="p6Score"></h2>
+                </td>
+            </table>
+            <table align="center">
+                <th>
+                    <div id="dice1" class="dice">0</div>
+                </th>
+                <th>
+                    <div id="dice2" class="dice">0</div>
+                </th>
+                <th>
+                    <div id="dice3" class="dice">0</div>
+                </th>
+                <th>
+                    <div id="dice4" class="dice">0</div>
+                </th>
+                <th>
+                    <div id="dice5" class="dice">0</div>
+                </th>
+                <th>
+                    <div id="dice6" class="dice">0</div>
+                </th>
+            </table>
+            <table align="center">
+                <th>
+                    <button onClick="StartGame()" class="press">Start Game</button>
+                </th>
+                <th>
+                    <button onClick="DiceRoll()" class="press">Roll Dice</button>
+                </th>
+                <th>
+                    <button class="press">Next Round</button>
+                </th>
+            </table>
+            <table align="center">
+                <th>    
+                    <h2 id="status"></h2>
+                </th>
+            </table>
+            <script src="DiceGame.js"></script>
+
+        </body>
+</html>
