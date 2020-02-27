@@ -1,6 +1,8 @@
 var players = ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"];
-var playerScore = [1,1,1,1,1,1,1,1,1,1]
+var playerScore = [1,1,1,1,1,1,1,1,1,1];
+var playerScoreCopy = [1,1,1,1,1,1,1,1,1,1];
 var diceTotal = 0;
+var round = 1;
 function StartGame(){
     ShowPlayers()
     ShowPlayerScore()
@@ -27,7 +29,7 @@ function DiceRoll(){
     dice4.innerHTML = d4;
     dice5.innerHTML = d5;
     dice6.innerHTML = d6;
-    status.innerHTML = "You rolled: " + diceTotal + "!";
+    status.innerHTML = "Round " + round;
     if(d1 === d2 && d1 === d3 && d1 === d4 && d1 === d5 && d1 === d6){
         status.innerHTML += " AWESOME!";
     }
@@ -103,6 +105,9 @@ function SetPlayersScoreOnRoll(){
     for(let i = 0; i < players.length; i++){
         DiceRoll()
         playerScore[i] = diceTotal;
+        if(playerScore[i] === 0){
+            playerScore[i] = 0;
+        }
         document.getElementById("p1Score").innerHTML = playerScore[0];
         document.getElementById("p2Score").innerHTML = playerScore[1];
         document.getElementById("p3Score").innerHTML = playerScore[2];
@@ -114,4 +119,26 @@ function SetPlayersScoreOnRoll(){
         document.getElementById("p9Score").innerHTML = playerScore[8];
         document.getElementById("p10Score").innerHTML = playerScore[9];
     }
+}
+
+function StartNewRound(){
+    round++;
+    RemoveLowestTwoPlayers()
+    ShowPlayers()
+    ShowPlayerScore()
+}
+
+function RemoveLowestTwoPlayers(){
+    playerScore,
+    twoLowest = playerScore.sort((a,b) => a - b).slice(0, 2);
+    for(let i = 0; i < playerScore.length; i++){
+        if(twoLowest[0] === playerScore[i] || twoLowest[1] === playerScore[i]){
+            playerScoreCopy[i] = 0;
+        }
+    }
+    
+    console.log(playerScore);
+    console.log(twoLowest);
+    console.log(playerScoreCopy);
+
 }
