@@ -1,11 +1,38 @@
-var players = ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"];
-var playerScore = [1,1,1,1,1,1,1,1,1,1];
-var playerScoreCopy = [1,1,1,1,1,1,1,1,1,1];
+var player = {
+    name: "P",
+    score: 0
+}
+
+var players = [];
 var diceTotal = 0;
 var round = 1;
+var count = 0;
+var x = 9;
+var y = 8;
+
+for(let i = 1; i < 11; i++){
+    var playerMade = Object.create(player);
+    playerMade.name += i;
+    playerMade.score = 0;
+    players.push(playerMade);
+}
+
 function StartGame(){
     ShowPlayers()
     ShowPlayerScore()
+}
+
+function ShowPlayers(){
+    for(let i = 0; i < players.length; i++){
+        document.getElementById("P" + i).innerHTML = players[i].name;
+    }
+}
+
+function ShowPlayerScore(){
+    for(let i = 0; i < players.length; i++){
+        document.getElementById("P" + i + "Score").innerHTML = players[i].score;
+    }
+    document.getElementById("status").innerHTML = "Round " + round;
 }
 
 function DiceRoll(){
@@ -29,116 +56,119 @@ function DiceRoll(){
     dice4.innerHTML = d4;
     dice5.innerHTML = d5;
     dice6.innerHTML = d6;
-    status.innerHTML = "Round " + round;
     if(d1 === d2 && d1 === d3 && d1 === d4 && d1 === d5 && d1 === d6){
         status.innerHTML += " AWESOME!";
     }
 }
 
-function ShowPlayers(){
-    if(playerScore[0] !== 0){
-        document.getElementById("p1").innerHTML = players[0];
-    }
-    if(playerScore[1] !== 0){
-        document.getElementById("p2").innerHTML = players[1];
-    }
-    if(playerScore[2] !== 0){
-        document.getElementById("p3").innerHTML = players[2];
-    }
-    if(playerScore[3] !== 0){
-        document.getElementById("p4").innerHTML = players[3];
-    }
-    if(playerScore[4] !== 0){
-        document.getElementById("p5").innerHTML = players[4];
-    }
-    if(playerScore[5] !== 0){
-        document.getElementById("p6").innerHTML = players[5];
-    }
-    if(playerScore[6] !== 0){
-        document.getElementById("p7").innerHTML = players[6];
-    }
-    if(playerScore[7] !== 0){
-        document.getElementById("p8").innerHTML = players[7];
-    }
-    if(playerScore[8] !== 0){
-        document.getElementById("p9").innerHTML = players[8];
-    }
-    if(playerScore[9] !== 0){
-        document.getElementById("p10").innerHTML = players[9];
-    }
-}
-
-function ShowPlayerScore(){
-    if(playerScore[0] !== 0){
-        document.getElementById("p1Score").innerHTML = " ";
-    }
-    if(playerScore[1] !== 0){
-        document.getElementById("p2Score").innerHTML = " ";
-    }
-    if(playerScore[2] !== 0){
-        document.getElementById("p3Score").innerHTML = " ";
-    }
-    if(playerScore[3] !== 0){
-        document.getElementById("p4Score").innerHTML = " ";
-    }
-    if(playerScore[4] !== 0){
-        document.getElementById("p5Score").innerHTML = " ";
-    }
-    if(playerScore[5] !== 0){
-        document.getElementById("p6Score").innerHTML = " ";
-    }
-    if(playerScore[6] !== 0){
-        document.getElementById("p7Score").innerHTML = " ";
-    }
-    if(playerScore[7] !== 0){
-        document.getElementById("p8Score").innerHTML = " ";
-    }
-    if(playerScore[8] !== 0){
-        document.getElementById("p9Score").innerHTML = " ";
-    }
-    if(playerScore[9] !== 0){
-        document.getElementById("p10Score").innerHTML = " ";
-    }
-}
-
-function SetPlayersScoreOnRoll(){
+function SetPlayerScore(){
     for(let i = 0; i < players.length; i++){
-        DiceRoll()
-        playerScore[i] = diceTotal;
-        if(playerScore[i] === 0){
-            playerScore[i] = 0;
-        }
-        document.getElementById("p1Score").innerHTML = playerScore[0];
-        document.getElementById("p2Score").innerHTML = playerScore[1];
-        document.getElementById("p3Score").innerHTML = playerScore[2];
-        document.getElementById("p4Score").innerHTML = playerScore[3];
-        document.getElementById("p5Score").innerHTML = playerScore[4];
-        document.getElementById("p6Score").innerHTML = playerScore[5];
-        document.getElementById("p7Score").innerHTML = playerScore[6];
-        document.getElementById("p8Score").innerHTML = playerScore[7];
-        document.getElementById("p9Score").innerHTML = playerScore[8];
-        document.getElementById("p10Score").innerHTML = playerScore[9];
+        DiceRoll();
+        players[i].score = diceTotal;
+        document.getElementById("P" + i + "Score").innerHTML = players[i].score;
+        console.log(players[i].score);
     }
 }
 
-function StartNewRound(){
+function NextRound(){
+    if(players.length == 2 && round == 5){
+        LastRound();
+    }else{
+        RemoveLowestTwo();
+    }
+    HideNamesAndScores();
+    for(let i = 0; i < players.length; i++){
+        players[i].score = 0;
+        ShowPlayers();
+        ShowPlayerScore();
+        if(players.length > 2){
+            document.getElementById("dice1").innerHTML = " ";
+            document.getElementById("dice2").innerHTML = " ";
+            document.getElementById("dice3").innerHTML = " ";
+            document.getElementById("dice4").innerHTML = " ";
+            document.getElementById("dice5").innerHTML = " ";
+            document.getElementById("dice6").innerHTML = " ";
+        }
+    }
     round++;
-    RemoveLowestTwoPlayers()
-    ShowPlayers()
-    ShowPlayerScore()
+    document.getElementById("status").innerHTML = "Round " + round;
 }
 
-function RemoveLowestTwoPlayers(){
-    playerScore,
-    twoLowest = playerScore.sort((a,b) => a - b).slice(0, 2);
-    for(let i = 0; i < playerScore.length; i++){
-        if(twoLowest[0] === playerScore[i] || twoLowest[1] === playerScore[i]){
-            playerScoreCopy[i] = 0;
-        }
+function RemoveLowestTwo(){
+    players.sort(function(a, b){return b.score - a.score});
+    var one = players.length - 1;
+    var two = players.length - 2;
+    var oneName = players[one].name;
+    var twoName = players[two].name;
+        
+    alert("These Players were removed!:" + oneName + " " + twoName);
+
+    players.pop();
+    players.pop();
+    console.log(players);
+    if(players.length < 2){
+        ResetGame();
     }
-    
-    console.log(playerScore);
-    console.log(twoLowest);
-    console.log(playerScoreCopy);
-
 }
+
+function HideNamesAndScores(){
+    switch(round){
+        case 1:
+            document.getElementById("P9").innerHTML = " ";
+            document.getElementById("P9Score").innerHTML = " ";
+            document.getElementById("P8").innerHTML = " ";
+            document.getElementById("P8Score").innerHTML = " ";
+        break;
+        case 2:
+            document.getElementById("P7").innerHTML = " ";
+            document.getElementById("P7Score").innerHTML = " ";
+            document.getElementById("P6").innerHTML = " ";
+            document.getElementById("P6Score").innerHTML = " ";
+        break;
+        case 3:
+            document.getElementById("P5").innerHTML = " ";
+            document.getElementById("P5Score").innerHTML = " ";
+            document.getElementById("P4").innerHTML = " ";
+            document.getElementById("P4Score").innerHTML = " ";
+        break;
+        case 4:
+            document.getElementById("P3").innerHTML = " ";
+            document.getElementById("P3Score").innerHTML = " ";
+            document.getElementById("P2").innerHTML = " ";
+            document.getElementById("P2Score").innerHTML = " ";
+        break;
+        case 6:
+            ResetGame();
+        break;
+    }
+}
+
+function LastRound(){
+        if(players[0].score > players[1].score){
+            alert(players[0].name + " Wins!");
+        }else if(players[1].score > players[0].score){
+            alert(players[1].name + " Wins!");
+        }else if(players[0].score == players[1].score){
+            alert("Tie! Roll Again!");
+        }
+}
+
+function ResetGame(){
+    players = [];
+    for(let i = 1; i < 11; i++){
+        var playerMade = Object.create(player);
+        playerMade.name += i;
+        playerMade.score = 0;
+        players.push(playerMade);
+    }
+    for(let i = 0; i < players.length; i++){
+        document.getElementById("P" + i).innerHTML = players[i].name;
+        document.getElementById("P" + i + "Score").innerHTML = players.score;
+    }
+    diceTotal = 0;
+    round = 0;
+    count = 0;
+}
+
+
+

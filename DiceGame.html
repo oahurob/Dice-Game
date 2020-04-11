@@ -7,65 +7,65 @@
         <body>
             <table class="t" align="center">
                 <th>
-                    <h2 id="p1"></h2>
+                    <h2 id="P0"></h2>
                 </th>
                 <th>
-                    <h2 id="p2"></h2>
+                    <h2 id="P1"></h2>
                 </th>
                 <th>
-                    <h2 id="p3"></h2>
+                    <h2 id="P2"></h2>
                 </th>
                 <th>
-                    <h2 id="p4"></h2>
+                    <h2 id="P3"></h2>
                 </th>
                 <th>
-                    <h2 id="p5"></h2>
+                    <h2 id="P4"></h2>
                 </th>
                 <th>
-                    <h2 id="p6"></h2>
+                    <h2 id="P5"></h2>
                 </th>
                 <th>
-                    <h2 id="p7"></h2>
+                    <h2 id="P6"></h2>
                 </th>
                 <th>
-                    <h2 id="p8"></h2>
+                    <h2 id="P7"></h2>
                 </th>
                 <th>
-                    <h2 id="p9"></h2>
+                    <h2 id="P8"></h2>
                 </th>
                 <th>
-                    <h2 id="p10"></h2>
+                    <h2 id="P9"></h2>
                 </th>
                 <tr/>
                 <td>
-                    <h2 id="p1Score"></h2>
+                    <h2 id="P0Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p2Score"></h2>
+                    <h2 id="P1Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p3Score"></h2>
+                    <h2 id="P2Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p4Score"></h2>
+                    <h2 id="P3Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p5Score"></h2>
+                    <h2 id="P4Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p6Score"></h2>
+                    <h2 id="P5Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p7Score"></h2>
+                    <h2 id="P6Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p8Score"></h2>
+                    <h2 id="P7Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p9Score"></h2>
+                    <h2 id="P8Score"></h2>
                 </td>
                 <td>
-                    <h2 id="p10Score"></h2>
+                    <h2 id="P9Score"></h2>
                 </td>
             </table>
             <table align="center">
@@ -93,10 +93,15 @@
                     <button onClick="StartGame()" class="press">Start Game</button>
                 </th>
                 <th>
-                    <button onClick="SetPlayersScoreOnRoll()" class="press">Roll Dice</button>
+                    <button id="roll" onClick="SetPlayerScore()" class="press">Roll Dice</button>
+                </th>
+            </table>
+            <table align="center">
+                <th>
+                    <button onClick="NextRound()" class="press">Next Round</button>
                 </th>
                 <th>
-                    <button onClick="StartNewRound()" class="press">Next Round</button>
+                    <button onClick="ResetGame()" class="press">Reset Game</button>
                 </th>
             </table>
             <table align="center">
@@ -104,7 +109,6 @@
                     <h2 id="status"></h2>
                 </th>
             </table>
-            <script src="DiceGame.js"></script>
-
         </body>
+        <script src="DiceGame.js"></script>
 </html>
