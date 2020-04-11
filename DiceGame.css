@@ -1,7 +1,7 @@
 body{
     margin: 25px;
     background-color: black;
-    background-image: url("dice.jpg");
+    background-image: url("one.jpg");
     background-repeat: no-repeat;
     background-attachment: fill;
     background-size: cover;
@@ -20,6 +20,11 @@ div.dice{
 }
 button.press{
     border-radius: 25px;
+}
+
+h1{
+    box-align: center;
+    color: gold;
 }
 h2{
     color: wheat;

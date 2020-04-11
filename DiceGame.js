@@ -32,7 +32,6 @@ function ShowPlayerScore(){
     for(let i = 0; i < players.length; i++){
         document.getElementById("P" + i + "Score").innerHTML = players[i].score;
     }
-    document.getElementById("status").innerHTML = "Round " + round;
 }
 
 function DiceRoll(){
@@ -66,13 +65,20 @@ function SetPlayerScore(){
         DiceRoll();
         players[i].score = diceTotal;
         document.getElementById("P" + i + "Score").innerHTML = players[i].score;
-        console.log(players[i].score);
     }
 }
 
 function NextRound(){
     if(players.length == 2 && round == 5){
         LastRound();
+        players.pop();
+        document.getElementById("P2").innerHTML = "W";
+        document.getElementById("P3").innerHTML = "i";
+        document.getElementById("P4").innerHTML = "n";
+        document.getElementById("P5").innerHTML = "n";
+        document.getElementById("P6").innerHTML = "e";
+        document.getElementById("P7").innerHTML = "r";
+        document.getElementById("P4Score").innerHTML = players[0].name;
     }else{
         RemoveLowestTwo();
     }
@@ -105,7 +111,6 @@ function RemoveLowestTwo(){
 
     players.pop();
     players.pop();
-    console.log(players);
     if(players.length < 2){
         ResetGame();
     }
@@ -137,6 +142,10 @@ function HideNamesAndScores(){
             document.getElementById("P2").innerHTML = " ";
             document.getElementById("P2Score").innerHTML = " ";
         break;
+        case 5:
+            document.getElementById("P1").innerHTML = " ";
+            document.getElementById("P1Score").innerHTML = " ";
+        break;
         case 6:
             ResetGame();
         break;
@@ -146,8 +155,10 @@ function HideNamesAndScores(){
 function LastRound(){
         if(players[0].score > players[1].score){
             alert(players[0].name + " Wins!");
+            alert("Please Refresh The Page!");
         }else if(players[1].score > players[0].score){
             alert(players[1].name + " Wins!");
+            alert("Please Refresh The Page!");
         }else if(players[0].score == players[1].score){
             alert("Tie! Roll Again!");
         }
